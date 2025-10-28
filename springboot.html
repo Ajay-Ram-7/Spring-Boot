@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result</title>
+    <style>
+        body { font-family: 'Times New Roman', serif; text-align: center; }
+        #emailForm { display: none; }
+    </style>
+</head>
+<body>
+    <h1>Spring Boot Student Result</h1>
+    <p class="Result Portal"></p>
+    <form id="ageForm">
+        <input id="Age" type="number" placeholder="Enter the Age" required/>
+        <button type="submit">Submit Age</button>
+    </form>
+    <p id="message"></p>
+
+    <form id="emailForm">
+        <input id="Email" type="email" placeholder="Enter your Email" required/>
+        <button type="submit">Submit Email</button>
+    </form>
+    <p id="emailDisplay"></p>
+
+    <script>
+        document.getElementById('ageForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const age = parseInt(document.getElementById('Age').value);
+            const message = document.getElementById('message');
+            if (age >= 18) {
+                message.textContent = 'Age is valid. Please enter your email.';
+                message.style.color = 'green';
+                document.getElementById('emailForm').style.display = 'block';
+            } else {
+                message.textContent = 'Age must be 18 or older.';
+                message.style.color = 'red';
+                document.getElementById('emailForm').style.display = 'none';
+            }
+        });
+
+        document.getElementById('emailForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('Email').value;
+            document.getElementById('emailDisplay').textContent = 'Submitted Email: ' + email;
+        });
+    </script>
+</body>
+</html>
+
